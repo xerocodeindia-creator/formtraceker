@@ -589,3 +589,14 @@ body:before{
 .shell{
   background:linear-gradient(to bottom,#050509 0,#050509 140px,transparent 140px)!important;
 }
+
+
+/* Remove only the empty solid header strip; let the page background show through */
+.shell{
+  background:transparent!important;
+}
+.topbar{
+  background:transparent!important;
+  border-bottom-color:transparent!important;
+  box-shadow:none!important;
+}
