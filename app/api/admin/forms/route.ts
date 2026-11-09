@@ -1,0 +1,11 @@
+import {NextResponse} from "next/server";
+import {getSupabase,requireAdmin} from "@/lib/supabase";
+export const runtime="nodejs";
+export async function GET(request:Request){
+ if(!requireAdmin(request))return NextResponse.json({error:"Invalid or missing admin key."},{status:401});
+ try{const db=getSupabase();const [f,c,l,v]=await Promise.all([db.from("forms").select("id,slug,name,headline,target_url,created_at").order("created_at",{ascending:false}),db.from("clicks").select("*",{count:"exact",head:true}),db.from("leads").select("*",{count:"exact",head:true}),db.from("leads").select("*",{count:"exact",head:true}).eq("status","converted")]);if(f.error)throw f.error;return NextResponse.json({forms:f.data||[],stats:{clicks:c.count||0,leads:l.count||0,conversions:v.count||0}})}catch(e){return NextResponse.json({error:e instanceof Error?e.message:"Database error"},{status:500})}
+}
+export async function POST(request:Request){
+ if(!requireAdmin(request))return NextResponse.json({error:"Invalid or missing admin key."},{status:401});
+ try{const b=await request.json();const name=String(b.name||"").trim(),slug=String(b.slug||"").trim().toLowerCase(),headline=String(b.headline||"Get started today").trim(),target_url=String(b.target_url||"").trim();if(!name||!slug||!target_url)return NextResponse.json({error:"Name, slug and destination URL are required."},{status:400});if(!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug))return NextResponse.json({error:"Invalid slug."},{status:400});try{const u=new URL(target_url);if(!["http:","https:"].includes(u.protocol))throw Error()}catch{return NextResponse.json({error:"Enter a valid destination URL."},{status:400})}const {data,error}=await getSupabase().from("forms").insert({name,slug,headline,target_url,fields:[{name:"name",label:"Full name",type:"text",required:true},{name:"phone",label:"Mobile number",type:"tel",required:true}]}).select("id,slug,name,headline,target_url,created_at").single();if(error)throw error;return NextResponse.json({form:data},{status:201})}catch(e){return NextResponse.json({error:e instanceof Error?e.message:"Could not create form"},{status:500})}
+}
