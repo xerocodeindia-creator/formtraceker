@@ -583,3 +583,9 @@ body:before{
   background:#07070c!important;
   backdrop-filter:none!important;
 }
+
+
+/* Remove the grid/dots from the entire header band, including the top padding */
+.shell{
+  background:linear-gradient(to bottom,#050509 0,#050509 140px,transparent 140px)!important;
+}
