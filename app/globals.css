@@ -364,3 +364,74 @@ th{border-bottom-color:#254331!important}
 .publicpowered{color:#91a895!important}
 .publicpowered strong{color:#baff78!important}
 .publicerror{color:#ff929f!important}
+
+
+/* Match dashboard palette to the original public form's premium violet theme */
+:root{
+  --bg:#08070d;
+  --panel:#100d17;
+  --line:#38264e;
+  --muted:#aaa0bb;
+  --text:#f7f3ff;
+  --blue:#a66af0;
+}
+html,body{background:#08070d!important;color:#f7f3ff}
+body{
+  background:
+    radial-gradient(ellipse at 12% 0%,rgba(125,67,220,.18),transparent 38%),
+    #08070d!important;
+}
+.shell{background:transparent!important;color:#f7f3ff}
+.stat,.panel{
+  background:linear-gradient(155deg,#191322 0%,#100d17 100%)!important;
+  border:1px solid #38264e!important;
+  box-shadow:0 8px 28px rgba(0,0,0,.25),0 0 24px rgba(135,75,220,.055)!important;
+}
+.stat:before{
+  background:linear-gradient(180deg,#c18aff,#7838d5)!important;
+}
+.statvalue{color:#d8baff!important;text-shadow:0 0 20px rgba(166,106,240,.14)}
+.brandmark{
+  background:linear-gradient(135deg,#c18aff,#7838d5)!important;
+  color:#fff!important;box-shadow:0 0 22px rgba(135,75,220,.22)
+}
+.eyebrow{color:#c9a7ff!important}
+.pill{
+  background:#171020!important;border-color:#513477!important;color:#c9a7ff!important
+}
+.btn{
+  background:linear-gradient(100deg,#7838d5 0%,#963fe3 100%)!important;
+  color:#fff!important;border:1px solid #a15bea!important;
+  box-shadow:0 5px 18px rgba(142,62,226,.15)!important
+}
+.btn.secondary{
+  background:#191322!important;color:#e3d1ff!important;
+  border:1px solid #513477!important;box-shadow:none!important
+}
+.btn:not(:disabled):hover,.btn.secondary:not(:disabled):hover{
+  box-shadow:0 0 0 1px rgba(193,138,255,.22),0 7px 24px rgba(142,62,226,.2)!important;
+  border-color:#b17aef!important
+}
+.field label,th{color:#c9bfd7!important}
+.field input,.datefilters .field input,.datefilters select,
+.addaffiliate input,.shortlinktools input{
+  background:#0b0910!important;border-color:#3a3046!important;color:#f7f3ff!important
+}
+.field input:focus,.datefilters .field input:focus,.datefilters select:focus{
+  border-color:#a66af0!important;box-shadow:0 0 0 3px rgba(166,106,240,.14)!important
+}
+code,.trackinglinkurl code{background:#21152e!important;color:#d8baff!important}
+.notice{background:#21152e!important;border-color:#513477!important;color:#e1caff!important}
+.notice.error{background:#351a25!important;border-color:#693448!important;color:#ffb3c1!important}
+td{border-bottom-color:#30243d!important}
+th{border-bottom-color:#49335e!important}
+.campaigncard{
+  background:linear-gradient(155deg,#191322 0%,#100d17 100%)!important;
+  border-color:#38264e!important;box-shadow:0 8px 24px rgba(0,0,0,.2)!important
+}
+.campaignhead h3{color:#f7f3ff!important}
+.trackinglinkitem{background:#100d17!important;border-color:#38264e!important}
+.trackinglinkmeta{color:#aaa0bb!important}
+.trackinglinkmeta b{color:#f0e5ff!important}
+.editcampaignpanel .panelhead{background:#100d17!important}
+.tablewrap{border-color:#38264e!important}
