@@ -3,7 +3,7 @@
 Affiliate click and lead attribution MVP built with Next.js and Supabase.
 
 ## Included
-- Single-admin dashboard protected by a server-side API key
+- Single-admin dashboard with password login and secure HTTP-only session
 - Create hosted lead forms
 - Affiliate and sub-affiliate attribution (aff_id, sub_aff_id)
 - Click redirect links with generated click_id
@@ -14,12 +14,12 @@ Affiliate click and lead attribution MVP built with Next.js and Supabase.
 ## Setup
 1. Create a Supabase project.
 2. Run supabase/schema.sql in the Supabase SQL Editor.
-3. Copy .env.example to .env.local and fill in the Supabase URL, service-role key, admin key, postback secret and app URL.
+3. Set `NEXT_PUBLIC_SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`, `ADMIN_PASSWORD`, `SESSION_SECRET`, `POSTBACK_SECRET` and `NEXT_PUBLIC_APP_URL` in your server environment.
 4. Run npm install.
 5. Run npm run dev.
 
 ## Create a form
-Open the dashboard, enter ADMIN_API_KEY in Admin access, then create a form. Set the destination URL to the thank-you page or next step after successful submission.
+Open the dashboard, sign in with `ADMIN_PASSWORD`, then create a form. The login session is stored in a secure HTTP-only cookie; the API key is never entered in the browser. Set the destination URL to the thank-you page or next step after successful submission.
 
 Public form URL:
 https://YOUR-DOMAIN/form/your-slug?aff_id=AFF123&sub_aff_id=SUB01
