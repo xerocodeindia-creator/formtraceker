@@ -639,3 +639,14 @@ body:before{
   border-radius:13px!important;
   box-shadow:0 8px 24px rgba(118,84,246,.20)!important;
 }
+
+
+/* Fix mobile lead table: keep columns readable and allow horizontal swipe */
+.tablewrap{display:block!important;width:100%!important;max-width:100%!important;overflow-x:auto!important;overflow-y:hidden!important;-webkit-overflow-scrolling:touch!important;overscroll-behavior-x:contain}
+.tablewrap table{width:1100px!important;min-width:1100px!important;table-layout:auto!important;border-collapse:separate;border-spacing:0}
+.tablewrap th,.tablewrap td{white-space:nowrap!important;word-break:normal!important;overflow-wrap:normal!important;vertical-align:top}
+.tablewrap th{font-size:11px!important;letter-spacing:.2px}
+.tablewrap td{font-size:12px!important}
+.tablewrap td:nth-child(3),.tablewrap th:nth-child(3){min-width:150px}
+.tablewrap td:nth-child(6),.tablewrap th:nth-child(6){min-width:230px}
+@media(max-width:600px){.tablewrap{margin-right:0!important}.tablewrap table{width:1100px!important;min-width:1100px!important}}
