@@ -6,9 +6,9 @@ export async function POST(request:Request){
  if(!requireAdmin(request))return NextResponse.json({error:"Please sign in."},{status:401});
  try{
   const b=await request.json();const form_id=String(b.form_id||"");
-  const aff_id=String(b.aff_id||"").trim();const sub_aff_id=String(b.sub_aff_id||"").trim();
-  if(!form_id||!aff_id||!sub_aff_id)return NextResponse.json({error:"Form, affiliate ID and sub-affiliate ID are required."},{status:400});
-  if(aff_id.length>100||sub_aff_id.length>100)return NextResponse.json({error:"IDs must be 100 characters or less."},{status:400});
+  const aff_id=String(b.aff_id||"").trim();
+  if(!form_id||!aff_id)return NextResponse.json({error:"Form and affiliate ID are required."},{status:400});
+  if(aff_id.length>100)return NextResponse.json({error:"Affiliate ID must be 100 characters or less."},{status:400});
   const db=getSupabase();const {data:form,error:formError}=await db.from("forms").select("id,slug").eq("id",form_id).eq("active",true).single();
   if(formError||!form)return NextResponse.json({error:"Form not found."},{status:404});
   for(let i=0;i<4;i++){
