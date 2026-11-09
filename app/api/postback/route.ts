@@ -1,0 +1,5 @@
+import {NextResponse} from "next/server";
+import {getSupabase} from "@/lib/supabase";
+export const runtime="nodejs";
+// GET /api/postback?key=SECRET&click_id=CLICK_ID&status=converted&transaction_id=ORDER123
+export async function GET(request:Request){try{const u=new URL(request.url);const secret=process.env.POSTBACK_SECRET;if(!secret||u.searchParams.get("key")!==secret)return NextResponse.json({error:"Unauthorized postback."},{status:401});const clickId=u.searchParams.get("click_id"),status=u.searchParams.get("status")||"converted";if(!clickId||!["converted","rejected","pending"].includes(status))return NextResponse.json({error:"Valid click_id and status are required."},{status:400});const {data:lead,error}=await getSupabase().from("leads").update({status,conversion_ref:u.searchParams.get("transaction_id")}).contains("attribution",{click_id:clickId}).select("id").maybeSingle();if(error)throw error;if(!lead)return NextResponse.json({error:"No lead found for this click_id."},{status:404});return NextResponse.json({success:true,lead_id:lead.id,status})}catch(e){return NextResponse.json({error:e instanceof Error?e.message:"Postback failed."},{status:500})}}
