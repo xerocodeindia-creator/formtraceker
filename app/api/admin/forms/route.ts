@@ -2,7 +2,7 @@ import {NextResponse} from "next/server";
 import {getSupabase,requireAdmin} from "@/lib/supabase";
 export const runtime="nodejs";
 export async function GET(request:Request){
- if(!requireAdmin(request))return NextResponse.json({error:"Invalid or missing admin key."},{status:401});
+ if(!requireAdmin(request))return NextResponse.json({error:"Please sign in to continue."},{status:401});
  try{const db=getSupabase();const [f,c,l,v]=await Promise.all([db.from("forms").select("id,slug,name,headline,target_url,created_at").order("created_at",{ascending:false}),db.from("clicks").select("*",{count:"exact",head:true}),db.from("leads").select("*",{count:"exact",head:true}),db.from("leads").select("*",{count:"exact",head:true}).eq("status","converted")]);if(f.error)throw f.error;return NextResponse.json({forms:f.data||[],stats:{clicks:c.count||0,leads:l.count||0,conversions:v.count||0}})}catch(e){return NextResponse.json({error:e instanceof Error?e.message:"Database error"},{status:500})}
 }
 export async function POST(request:Request){
