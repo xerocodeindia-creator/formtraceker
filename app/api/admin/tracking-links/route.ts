@@ -2,6 +2,10 @@ import {NextResponse} from "next/server";
 import {randomBytes} from "crypto";
 import {getSupabase,requireAdmin} from "@/lib/supabase";
 export const runtime="nodejs";
+export async function GET(request:Request){
+ if(!requireAdmin(request))return NextResponse.json({error:"Please sign in."},{status:401});
+ try{const {data,error}=await getSupabase().from("tracking_links").select("id,token,form_id,aff_id,sub_aff_id,created_at").order("created_at",{ascending:false});if(error)throw error;return NextResponse.json({links:data||[]})}catch(e){return NextResponse.json({error:e instanceof Error?e.message:"Could not load tracking links."},{status:500})}
+}
 export async function POST(request:Request){
  if(!requireAdmin(request))return NextResponse.json({error:"Please sign in."},{status:401});
  try{
