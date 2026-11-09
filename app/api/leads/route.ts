@@ -20,7 +20,7 @@ export async function POST(request:Request){
   // Keep the campaign affiliate ID unchanged; generate only a unique sub-affiliate ID per lead.
   const affiliateId=String(attribution["aff_id"]||"").trim();
   if(!affiliateId)return NextResponse.json({error:"Affiliate ID is missing. Please open the form using its tracking link."},{status:400});
-  const perLeadSubId="SUB"+randomBytes(6).toString("hex").slice(0,10).toUpperCase();
+  const perLeadSubId=randomBytes(6).toString("base64url").slice(0,8);
   attribution["sub_aff_id"]=perLeadSubId;
 
   const {data,error}=await getSupabase().from("leads").insert({
@@ -28,9 +28,16 @@ export async function POST(request:Request){
   }).select("id").single();
   if(error)throw error;
 
-  const redirect=new URL(form.target_url);
-  redirect.searchParams.set("subref",affiliateId+"_"+perLeadSubId);
-  return NextResponse.json({success:true,lead_id:data.id,redirect_url:redirect.toString()});
+  // Preserve the original query-string spelling, including trailing base64 "=" signs.
+  const [baseUrl,rawQuery=""]=String(form.target_url).split("?");
+  const keptParams=rawQuery.split("&").filter(Boolean).filter(part=>{
+   const rawKey=part.split("=")[0];
+   let key=rawKey;try{key=decodeURIComponent(rawKey)}catch{}
+   return key!=="subref"&&key!=="subid";
+  });
+  keptParams.push("subref="+affiliateId+"_"+perLeadSubId);
+  const redirectUrl=baseUrl+"?"+keptParams.join("&");
+  return NextResponse.json({success:true,lead_id:data.id,redirect_url:redirectUrl});
  }catch(e){
   return NextResponse.json({error:e instanceof Error?e.message:"Unable to submit lead."},{status:500});
  }
