@@ -11,7 +11,7 @@ export async function POST(request:Request){
   if(formError||!form)return NextResponse.json({error:"This form is unavailable."},{status:404});
   const name=String(values.name||"").trim(),phone=String(values.phone||"").trim();
   if(!name||!phone)return NextResponse.json({error:"Name and mobile number are required."},{status:400});
-  if(!/^[+0-9() -]{7,20}$/.test(phone))return NextResponse.json({error:"Enter a valid phone number."},{status:400});
+  if(!/^[6-9][0-9]{9}$/.test(phone))return NextResponse.json({error:"Enter a valid 10-digit Indian mobile number."},{status:400});
 
   const allowed=["aff_id","sub_aff_id","click_id","utm_source","utm_medium","utm_campaign","utm_content","fbclid"];
   const attribution:Record<string,string>={};
