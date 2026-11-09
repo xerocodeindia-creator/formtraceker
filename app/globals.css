@@ -553,3 +553,14 @@ th{border-bottom-color:rgba(145,145,165,.23)!important}
 @media(max-width:600px){
   .topbar{margin:0 -12px 24px;padding:13px 12px}
 }
+
+
+/* Remove the decorative grid/dot background; keep the clean Sayanura dark surface */
+body:before{
+  display:none!important;
+  content:none!important;
+  background:none!important;
+}
+body{
+  background:radial-gradient(ellipse at 50% -18%,rgba(100,70,190,.10),transparent 42%),#050509!important;
+}
