@@ -227,3 +227,86 @@ button:not(:disabled):active::after,.btn:not(:disabled):active::after{background
   .stats{gap:7px}
   .stat{padding:12px 10px}
 }
+
+
+/* Neon green premium dark dashboard theme */
+:root{
+  --bg:#050a08;
+  --panel:#0b1410;
+  --line:#1d382a;
+  --muted:#91a99a;
+  --text:#ecfff2;
+  --blue:#9cff57;
+}
+html,body{background:#050a08!important;color:#ecfff2}
+body{
+  background:
+    radial-gradient(ellipse at 12% 0%,rgba(83,255,125,.10),transparent 34%),
+    radial-gradient(ellipse at 92% 12%,rgba(153,255,72,.055),transparent 28%),
+    #050a08!important;
+}
+.shell{
+  background:transparent!important;
+  color:#ecfff2;
+}
+.stat,.panel{
+  background:linear-gradient(145deg,#0d1912 0%,#09110d 100%)!important;
+  border:1px solid #1d382a!important;
+  box-shadow:0 8px 28px rgba(0,0,0,.22),inset 0 1px 0 rgba(160,255,180,.025)!important;
+}
+.stat{position:relative;overflow:hidden}
+.stat:before{
+  content:"";position:absolute;left:0;top:0;bottom:0;width:3px;
+  background:linear-gradient(180deg,#c0ff70,#38e879);opacity:.85
+}
+.statvalue{color:#c7ff8a;text-shadow:0 0 22px rgba(164,255,91,.12)}
+.brandmark{
+  background:linear-gradient(135deg,#d2ff78,#55ed86)!important;
+  color:#071109!important;
+  box-shadow:0 0 22px rgba(119,255,115,.22)
+}
+.eyebrow{color:#aaff70!important}
+.pill{
+  background:rgba(75,190,103,.10)!important;
+  border-color:#285c39!important;color:#baff91!important
+}
+.btn{
+  background:linear-gradient(110deg,#b9ff67,#54e981)!important;
+  color:#071109!important;border:1px solid #baff78!important;
+  box-shadow:0 5px 18px rgba(102,255,117,.12)
+}
+.btn.secondary{
+  background:#102219!important;color:#c8ffd0!important;
+  border:1px solid #2c6040!important;box-shadow:none
+}
+.btn:not(:disabled):hover,.btn.secondary:not(:disabled):hover{
+  box-shadow:0 0 0 1px rgba(166,255,119,.2),0 7px 24px rgba(91,255,120,.17)!important;
+  border-color:#aaff70!important
+}
+.field label,th{color:#b4cdb9!important}
+.field input,.datefilters .field input,.datefilters select{
+  background:#07100b!important;border-color:#254331!important;color:#effff1!important
+}
+.field input:focus,.datefilters .field input:focus,.datefilters select:focus{
+  border-color:#8df46c!important;box-shadow:0 0 0 3px rgba(126,255,110,.10)
+}
+code{background:#102218!important;color:#bfff8a!important}
+.notice{background:#10251a!important;border-color:#326b42!important;color:#c7ffcb!important}
+.notice.error{background:#351a25!important;border-color:#693448!important;color:#ffb3c1!important}
+td{border-bottom-color:#1b3023!important}
+th{border-bottom-color:#254331!important}
+.campaigncard{
+  background:linear-gradient(145deg,#0d1a12,#08100b)!important;
+  border-color:#23432d!important;
+  box-shadow:0 8px 24px rgba(0,0,0,.18)
+}
+.campaignhead h3{color:#effff0!important}
+.addaffiliate input,.shortlinktools input{
+  background:#07100b!important;border-color:#254331!important;color:#effff1!important
+}
+.trackinglinkitem{background:#08110b!important;border-color:#254331!important}
+.trackinglinkmeta{color:#91aa98!important}
+.trackinglinkmeta b{color:#d8ffe0!important}
+.trackinglinkurl code{background:#102218!important;color:#c3ff91!important}
+.editcampaignpanel .panelhead{background:#0b1410!important}
+.publicwrap{ /* keep the public registration page's own visual identity */ }
