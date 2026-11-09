@@ -310,3 +310,57 @@ th{border-bottom-color:#254331!important}
 .trackinglinkurl code{background:#102218!important;color:#c3ff91!important}
 .editcampaignpanel .panelhead{background:#0b1410!important}
 .publicwrap{ /* keep the public registration page's own visual identity */ }
+
+
+/* Public form: same premium layout, switched from purple to neon green */
+.publicwrap{
+  background:
+    radial-gradient(ellipse at 50% 0%,rgba(88,255,112,.17),transparent 48%),
+    #070d09!important;
+  color:#f2fff3!important;
+}
+.publicwrap:before,.publicwrap:after{
+  background:rgba(65,210,95,.10)!important;
+}
+.publichero h1{color:#f2fff3!important}
+.publichero p{color:#a7b9aa!important}
+.publicoffer{
+  color:#baff91!important;
+  background:rgba(73,190,93,.10)!important;
+  border-color:#356c40!important;
+}
+.publicoffer span{
+  background:#9cff57!important;
+  box-shadow:0 0 10px #9cff57!important;
+}
+.publiccard{
+  background:linear-gradient(155deg,#142219 0%,#0b140e 100%)!important;
+  color:#f2fff3!important;
+  border:1px solid #2b5033!important;
+  box-shadow:0 22px 65px rgba(0,0,0,.55),0 0 36px rgba(91,255,112,.10)!important;
+}
+.publicaccent{
+  background:linear-gradient(90deg,#53e879,#c5ff70)!important;
+}
+.publicformname{color:#b6cbb9!important}
+.publiccard .field label{color:#c8ddca!important}
+.publiccard .field input{
+  background:#080f0a!important;
+  border:1px solid #2b4831!important;
+  color:#f4fff5!important;
+}
+.publiccard .field input::placeholder{color:#7e9181!important}
+.publiccard .field input:focus{
+  border-color:#91f36b!important;
+  box-shadow:0 0 0 3px rgba(145,243,107,.13)!important;
+}
+.publiccard .publicsubmit{
+  background:linear-gradient(100deg,#54df76 0%,#b9f85b 100%)!important;
+  color:#07120a!important;
+  border:1px solid #aaff70!important;
+  box-shadow:0 8px 22px rgba(91,235,105,.22)!important;
+}
+.publictrust{color:#a5b9a8!important}
+.publicpowered{color:#91a895!important}
+.publicpowered strong{color:#baff78!important}
+.publicerror{color:#ff929f!important}
