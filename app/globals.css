@@ -59,3 +59,44 @@ td{border-bottom-color:#222!important}
 .publicpowered strong{color:#c08aff}
 .publicerror{color:#ff929f!important;font-size:12px}
 @media(max-width:520px){.publicwrap{padding:48px 17px 80px}.publiccard{padding:24px 19px 20px}.publichero h1{font-size:27px}}
+
+
+/* Refined dark violet public form palette */
+.publicwrap{
+  background:
+    radial-gradient(ellipse at 50% 0%,rgba(125,67,220,.20),transparent 48%),
+    #08070d !important;
+  color:#f7f3ff !important;
+  padding-top:72px;
+}
+.publichero h1{color:#f6f0ff !important}
+.publichero p{color:#aaa0bb !important}
+.publicoffer{
+  color:#c9a7ff !important;
+  background:#171020 !important;
+  border-color:#513477 !important;
+}
+.publiccard{
+  background:linear-gradient(155deg,#191322 0%,#100d17 100%) !important;
+  color:#f7f3ff !important;
+  border:1px solid #38264e !important;
+  box-shadow:0 22px 65px rgba(0,0,0,.55),0 0 36px rgba(135,75,220,.12) !important;
+}
+.publicformname{color:#c4b8d4 !important}
+.publiccard .field label{color:#c9bfd7 !important}
+.publiccard .field input{
+  background:#0b0910 !important;
+  border:1px solid #3a3046 !important;
+  color:#fff !important;
+}
+.publiccard .field input:focus{
+  border-color:#a66af0 !important;
+  box-shadow:0 0 0 3px rgba(166,106,240,.14) !important;
+}
+.publiccard .publicsubmit{
+  background:linear-gradient(100deg,#7838d5 0%,#963fe3 100%) !important;
+  color:#fff !important;
+  border:1px solid #a15bea !important;
+  box-shadow:0 8px 22px rgba(142,62,226,.25) !important;
+}
+.publicaccent{background:linear-gradient(90deg,#8b42e8,#c18aff) !important}
