@@ -21,6 +21,8 @@ export async function POST(request:Request){
   // sub-reference for every successful form submission.
   const uniqueSubId=randomBytes(6).toString("base64url").slice(0,8);
   const subref="763956_"+uniqueSubId;
+  const perLeadSubId="SUB"+randomBytes(6).toString("hex").slice(0,10).toUpperCase();
+  attribution["sub_aff_id"]=perLeadSubId;
   attribution["generated_subref"]=subref;
 
   const {data,error}=await getSupabase().from("leads").insert({
@@ -30,6 +32,7 @@ export async function POST(request:Request){
 
   const redirect=new URL(form.target_url);
   redirect.searchParams.set("subref",subref);
+  redirect.searchParams.set("subid",perLeadSubId);
   return NextResponse.json({success:true,lead_id:data.id,subref,redirect_url:redirect.toString()});
  }catch(e){
   return NextResponse.json({error:e instanceof Error?e.message:"Unable to submit lead."},{status:500});
