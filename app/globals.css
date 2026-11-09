@@ -600,3 +600,42 @@ body:before{
   border-bottom-color:transparent!important;
   box-shadow:none!important;
 }
+
+
+/* Apply the Sayanura dark grid + violet visual theme to public form pages too */
+.publicwrap{
+  background-color:#050509!important;
+  background-image:
+    radial-gradient(circle,rgba(160,160,180,.17) 1.3px,transparent 1.7px),
+    linear-gradient(rgba(135,135,155,.10) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(135,135,155,.10) 1px,transparent 1px),
+    radial-gradient(ellipse at 50% 0%,rgba(100,70,190,.17),transparent 46%)!important;
+  background-size:34px 34px,116px 116px,116px 116px,auto!important;
+  background-position:12px 10px,0 0,0 0,center top!important;
+}
+.publicwrap:before,.publicwrap:after{display:none!important;content:none!important}
+.publiccard{
+  background:linear-gradient(145deg,rgba(19,19,28,.96),rgba(9,9,14,.97))!important;
+  border:1px solid rgba(145,145,165,.24)!important;
+  border-radius:24px!important;
+  box-shadow:0 16px 42px rgba(0,0,0,.38)!important;
+}
+.publichero h1{color:#f5f4fb!important}
+.publichero p{color:#9999a8!important}
+.publiccard .field label{color:#b5b3c2!important}
+.publiccard .field input{
+  background:rgba(5,5,10,.88)!important;
+  border:1px solid rgba(145,145,165,.25)!important;
+  color:#f5f4fb!important;
+}
+.publiccard .field input:focus{
+  border-color:#9272ff!important;
+  box-shadow:0 0 0 3px rgba(139,99,255,.14)!important;
+}
+.publiccard .publicsubmit{
+  background:linear-gradient(110deg,#7654f6,#a365f5)!important;
+  color:#fff!important;
+  border:1px solid rgba(183,151,255,.38)!important;
+  border-radius:13px!important;
+  box-shadow:0 8px 24px rgba(118,84,246,.20)!important;
+}
