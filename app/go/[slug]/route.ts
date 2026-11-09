@@ -8,7 +8,8 @@ export async function GET(request:Request,{params}:{params:Promise<{slug:string}
   const {data:form,error}=await db.from("forms").select("id,slug").eq("slug",slug).eq("active",true).single();
   if(error||!form)return NextResponse.json({error:"Tracking link not found."},{status:404});
   const clickId=randomUUID();const keys=["aff_id","sub_aff_id","utm_source","utm_medium","utm_campaign","utm_content","fbclid"];const attribution:Record<string,string>={};
-  for(const k of keys){const v=incoming.searchParams.get(k);if(v)attribution[k]=v.slice(0,255)}
+  const shortAliases:Record<string,string>={a:"aff_id",s:"sub_aff_id"};
+  for(const k of keys){const shortKey=Object.keys(shortAliases).find(alias=>shortAliases[alias]===k);const v=incoming.searchParams.get(k)||(shortKey?incoming.searchParams.get(shortKey):null);if(v)attribution[k]=v.slice(0,255)}
   const {error:insertError}=await db.from("clicks").insert({form_id:form.id,click_id:clickId,attribution,user_agent:request.headers.get("user-agent"),referer:request.headers.get("referer")});
   if(insertError)throw insertError;
   const appBase=process.env.NEXT_PUBLIC_APP_URL||incoming.origin;const destination=new URL("/form/"+encodeURIComponent(slug),appBase);
