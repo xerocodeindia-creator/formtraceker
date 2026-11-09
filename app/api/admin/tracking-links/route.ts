@@ -13,8 +13,9 @@ export async function POST(request:Request){
   if(formError||!form)return NextResponse.json({error:"Form not found."},{status:404});
   for(let i=0;i<4;i++){
    const token=randomBytes(4).toString("base64url").replace(/[-_]/g,"").slice(0,6);
+   const sub_aff_id="SUB"+randomBytes(4).toString("hex").slice(0,8).toUpperCase();
    const {error}=await db.from("tracking_links").insert({token,form_id,aff_id,sub_aff_id});
-   if(!error)return NextResponse.json({token,slug:form.slug});
+   if(!error)return NextResponse.json({token,slug:form.slug,aff_id,sub_aff_id});
    if(!String(error.code||"").startsWith("23"))throw error;
   }
   throw new Error("Could not create a unique short link. Try again.");
