@@ -564,3 +564,22 @@ body:before{
 body{
   background:radial-gradient(ellipse at 50% -18%,rgba(100,70,190,.10),transparent 42%),#050509!important;
 }
+
+
+/* Restore page grid, but keep the logo/header area clean and solid */
+body:before{
+  display:block!important;
+  content:""!important;
+  position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:
+    radial-gradient(circle,rgba(160,160,180,.20) 1.4px,transparent 1.7px),
+    linear-gradient(rgba(135,135,155,.105) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(135,135,155,.105) 1px,transparent 1px)!important;
+  background-size:34px 34px,116px 116px,116px 116px!important;
+  background-position:12px 10px,0 0,0 0!important;
+  opacity:.68!important;
+}
+.topbar{
+  background:#07070c!important;
+  backdrop-filter:none!important;
+}
