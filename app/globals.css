@@ -14,3 +14,21 @@
 .datefilters .field input{background:#0c1422;border:1px solid #2a3850;border-radius:10px;color:var(--text);padding:10px}
 .theme-light .datefilters .field input{background:#fff;border-color:var(--line);color:#172033}
 @media(max-width:760px){.datefilters{align-items:stretch}.datefilters .field{min-width:calc(50% - 8px);flex:1}}
+
+/* Pure black monochrome dashboard theme */
+:root{--bg:#000000;--panel:#090909;--line:#242424;--muted:#929292;--text:#f5f5f5;--blue:#ffffff}
+html,body{background:#000!important;color:#f5f5f5}
+body{background:#000!important}
+.shell{background:#000!important;color:#f5f5f5}
+.stat,.panel{background:#090909!important;border:1px solid #242424!important;box-shadow:none!important}
+.btn{background:#f2f2f2!important;color:#050505!important;border:1px solid #f2f2f2!important}
+.btn.secondary{background:#111!important;color:#f2f2f2!important;border:1px solid #333!important}
+.brandmark{background:#f2f2f2!important;color:#000!important}
+.eyebrow{color:#c7c7c7!important}
+.pill{background:#101010!important;border-color:#333!important;color:#d5d5d5!important}
+.field label,th{color:#bcbcbc!important}
+.field input,.datefilters .field input{background:#050505!important;border-color:#333!important;color:#f5f5f5!important}
+.field input:focus{border-color:#aaa!important}
+code{background:#171717!important;color:#f0f0f0!important}
+.notice{background:#101010!important;border-color:#333!important;color:#ddd!important}
+td{border-bottom-color:#222!important}
