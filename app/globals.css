@@ -158,3 +158,72 @@ button:not(:disabled)::after,.btn:not(:disabled)::after{content:"";display:block
 button:not(:disabled),.btn:not(:disabled){position:relative;overflow:hidden}
 button:not(:disabled):active::after,.btn:not(:disabled):active::after{background:rgba(255,255,255,.12);opacity:1}
 @media(prefers-reduced-motion:reduce){button,.btn,a.btn,[role="button"]{transition:none!important}}
+
+/* Premium mobile dashboard layout */
+@media(max-width:600px){
+  html,body{width:100%;overflow-x:hidden}
+  .shell{width:100%;max-width:100%;padding:16px 12px 42px!important}
+  .topbar{gap:10px;margin-bottom:24px;align-items:center}
+  .brand{font-size:18px;gap:9px}
+  .brandmark{width:34px;height:34px;border-radius:10px}
+  .topbar .actions{gap:7px;align-items:center}
+  .topbar .pill{font-size:9px;padding:6px 8px;letter-spacing:.3px}
+  .topbar .btn{padding:9px 11px;font-size:12px}
+  .hero{gap:16px;margin-bottom:18px}
+  .hero h1{font-size:30px;line-height:1.08;letter-spacing:-1.2px}
+  .hero .sub{font-size:13px;max-width:34ch}
+  .hero>.btn{width:100%;min-height:46px}
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin:16px 0}
+  .stat{padding:14px 13px;border-radius:14px}
+  .statlabel{font-size:11px}
+  .statvalue{font-size:24px;margin-top:6px}
+  .panel{padding:15px 13px;margin-top:13px;border-radius:16px}
+  .panelhead{align-items:flex-start;gap:10px;margin-bottom:15px}
+  .panel h2{font-size:17px}
+  .panelhead .muted{font-size:11px}
+  .panelhead>.btn{padding:9px 11px;font-size:11px;flex:0 0 auto}
+  .formgrid{grid-template-columns:minmax(0,1fr);gap:14px}
+  .formgrid .field,.formgrid .full{grid-column:1/-1;min-width:0}
+  .field label{font-size:11px;letter-spacing:.35px}
+  .field input{min-height:46px;padding:12px 13px;font-size:14px;border-radius:12px}
+  .formgrid .full>.btn{width:100%;min-height:48px}
+  .campaignlist{gap:12px}
+  .campaigncard{padding:14px 12px;border-radius:15px}
+  .campaignhead{align-items:flex-start;flex-direction:row;gap:9px;margin-bottom:12px}
+  .campaignhead h3{font-size:16px;line-height:1.3}
+  .campaignhead .btn{padding:9px 10px;font-size:11px;white-space:nowrap}
+  .campaignhead .muted{font-size:11px}
+  .trackinglinklist{gap:9px}
+  .trackinglinkitem{padding:11px;border-radius:12px}
+  .trackinglinktop{align-items:flex-start;font-size:11px}
+  .trackinglinkurl{grid-template-columns:minmax(0,1fr)!important;gap:9px}
+  .trackinglinkurl code{font-size:11px;line-height:1.55}
+  .trackinglinkurl .btn{justify-self:stretch;width:100%;min-height:40px}
+  .trackinglinkmeta{font-size:10px;gap:6px 12px}
+  .datefilters{display:grid;grid-template-columns:1fr 1fr;gap:10px;align-items:end}
+  .datefilters .field{min-width:0!important;width:100%}
+  .datefilters .field:first-child{grid-column:1/-1}
+  .datefilters select,.datefilters .field input{width:100%;min-width:0;min-height:44px;font-size:13px}
+  .datefilters>span{grid-column:1/-1;font-size:11px}
+  .datefilters>.btn{grid-column:1/-1;width:100%;min-height:44px}
+  .tablewrap{max-width:100%;border:1px solid #252525;border-radius:12px}
+  .tablewrap table{min-width:900px}
+  .notice{font-size:12px;overflow-wrap:anywhere}
+  .editcampaignpanel{top:12px!important;left:12px!important;transform:none!important;width:calc(100vw - 24px)!important;max-height:calc(100dvh - 24px)!important;padding:16px 13px!important;border-radius:16px;overflow-y:auto}
+  .editcampaignpanel .panelhead{position:sticky;top:-16px;z-index:2;background:#090909;padding:5px 0 12px}
+  .editcampaignpanel .formgrid{grid-template-columns:1fr}
+  .editcampaignpanel .actions{display:grid;grid-template-columns:1fr 1fr}
+  .editcampaignpanel .actions .btn{width:100%;min-height:44px}
+}
+@media(min-width:390px) and (max-width:600px){
+  .shell{padding-left:15px!important;padding-right:15px!important}
+  .panel{padding:17px 15px}
+  .campaigncard{padding:15px}
+}
+@media(max-width:360px){
+  .topbar .pill{display:none}
+  .campaignhead{flex-direction:column}
+  .campaignhead .btn{width:100%}
+  .stats{gap:7px}
+  .stat{padding:12px 10px}
+}
