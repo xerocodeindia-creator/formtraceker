@@ -32,3 +32,30 @@ body{background:#000!important}
 code{background:#171717!important;color:#f0f0f0!important}
 .notice{background:#101010!important;border-color:#333!important;color:#ddd!important}
 td{border-bottom-color:#222!important}
+
+
+/* Premium dark public registration form */
+.publicwrap{position:relative;isolation:isolate;overflow:hidden;min-height:100vh;display:flex;justify-content:center;align-items:flex-start;padding:68px 22px 90px;background:radial-gradient(ellipse at 50% 4%,rgba(126,65,220,.20),transparent 38%),#08070d;color:#f8f6ff}
+.publicwrap:before,.publicwrap:after{content:"";position:absolute;z-index:-1;left:-8%;width:116%;height:170px;border-radius:50% 50% 0 0;background:rgba(112,57,190,.12);bottom:-115px;transform:rotate(-2deg)}
+.publicwrap:after{bottom:-145px;background:rgba(112,57,190,.10);transform:rotate(2deg)}
+.publiccontent{width:min(100%,520px);display:flex;align-items:center;flex-direction:column}
+.publichero{text-align:center;margin-bottom:28px;width:100%}
+.publicoffer{display:inline-flex;align-items:center;gap:8px;padding:7px 13px;border:1px solid rgba(177,117,255,.42);border-radius:30px;color:#c49aff;background:rgba(139,79,224,.10);font-size:10px;font-weight:800;letter-spacing:.8px}
+.publicoffer span{width:6px;height:6px;border-radius:50%;background:#b77aff;box-shadow:0 0 10px #b77aff}
+.publichero h1{font:700 clamp(25px,5vw,34px) 'Space Grotesk',sans-serif;letter-spacing:-1px;margin:13px 0 7px;color:#f8f5ff}
+.publichero p{margin:0;color:#a7a0b6;font-size:13px}
+.publiccard{width:100%;padding:28px 26px 22px;background:linear-gradient(145deg,#17141f,#100e16);color:#f7f4ff;border:1px solid #30263e;border-radius:22px;box-shadow:0 24px 70px rgba(0,0,0,.48),0 0 38px rgba(132,74,220,.10)}
+.publicaccent{height:4px;width:54px;margin:0 auto 22px;border-radius:8px;background:linear-gradient(90deg,#8c42ee,#c18aff)}
+.publicformname{color:#aaa2b8;font-size:13px;margin-bottom:2px}
+.publiccard .field{gap:8px}
+.publiccard .field label{color:#c8bfd5;font-size:10px;font-weight:800;letter-spacing:.45px}
+.publiccard .field input{width:100%;height:47px;padding:0 14px;background:#0b0a10;border:1px solid #302b39;border-radius:12px;color:#fff;font-size:14px;outline:none}
+.publiccard .field input::placeholder{color:#777181}
+.publiccard .field input:focus{border-color:#a66af0;box-shadow:0 0 0 3px rgba(166,106,240,.13)}
+.publiccard .publicsubmit{height:49px;margin-top:1px;border:0!important;border-radius:12px;background:linear-gradient(100deg,#7d35df,#a43eea)!important;color:white!important;font-weight:800;box-shadow:0 8px 22px rgba(142,62,226,.28);display:flex;align-items:center;justify-content:center;gap:10px}
+.publiccard .publicsubmit span{font-size:18px;line-height:1}
+.publictrust{display:flex;justify-content:center;gap:22px;flex-wrap:wrap;margin-top:16px;color:#9c91ad;font-size:10px}
+.publicpowered{margin-top:24px;color:#8e7da6;font-size:9px;font-weight:800;letter-spacing:1.4px}
+.publicpowered strong{color:#c08aff}
+.publicerror{color:#ff929f!important;font-size:12px}
+@media(max-width:520px){.publicwrap{padding:48px 17px 80px}.publiccard{padding:24px 19px 20px}.publichero h1{font-size:27px}}
