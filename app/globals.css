@@ -104,3 +104,24 @@ td{border-bottom-color:#222!important}
 .shortlinktools{display:grid;grid-template-columns:1fr 1fr;gap:8px;min-width:330px}.shortlinktools input{min-width:0;background:#050505;border:1px solid #333;border-radius:9px;color:#f5f5f5;padding:10px}.shortlinktools .btn{grid-column:1/-1;justify-self:start}.shortlinktools .actions{grid-column:1/-1;align-items:center;flex-wrap:wrap}.shortlinktools code{overflow-wrap:anywhere}@media(max-width:760px){.shortlinktools{min-width:260px;grid-template-columns:1fr}}
 
 .datefilters select{min-width:190px;background:#050505;border:1px solid #333;border-radius:10px;color:#f5f5f5;padding:11px}.publiclogo{width:64px;height:64px;object-fit:contain;display:block;margin:0 auto 13px;border-radius:12px}
+
+/* Clear, spacious campaign and tracking-link table layout */
+.tablewrap table{table-layout:fixed;min-width:980px}
+.tablewrap th:nth-child(1),.tablewrap td:nth-child(1){width:24%}
+.tablewrap th:nth-child(2),.tablewrap td:nth-child(2){width:20%}
+.tablewrap th:nth-child(3),.tablewrap td:nth-child(3){width:56%}
+.tablewrap td{vertical-align:top}
+.tablewrap td .actions{align-items:center}
+.tablewrap td .actions code{display:inline-block;max-width:220px;overflow-wrap:anywhere}
+.trackingcell{min-width:0}
+.trackingcell .shortlinktools{display:grid;grid-template-columns:minmax(150px,1fr) auto;gap:8px;min-width:0;max-width:520px;margin-bottom:12px}
+.trackingcell .shortlinktools .btn{grid-column:auto;justify-self:stretch;white-space:nowrap}
+.trackinglinklist{display:grid;gap:10px;max-width:560px}
+.trackinglinkitem{min-width:0;padding:12px;border:1px solid #292929;border-radius:10px;background:#050505}
+.trackinglinktop,.trackinglinkurl,.trackinglinkmeta{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.trackinglinktop{margin-bottom:9px;font-size:12px}
+.trackinglinkurl code{display:block;min-width:0;flex:1;overflow-wrap:anywhere;line-height:1.5}
+.trackinglinkurl .btn{flex:0 0 auto;padding:8px 12px}
+.trackinglinkmeta{justify-content:flex-start;flex-wrap:wrap;margin-top:9px;color:#999;font-size:11px}
+.trackinglinkmeta b{color:#eee;font-weight:600}
+@media(max-width:760px){.tablewrap table{min-width:900px}.trackingcell .shortlinktools{grid-template-columns:1fr}.trackingcell .shortlinktools .btn{justify-self:start}.trackinglinkurl{align-items:flex-start;flex-direction:column}}
