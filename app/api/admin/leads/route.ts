@@ -7,10 +7,19 @@ export async function GET(request:Request){
   const url=new URL(request.url);
   const from=url.searchParams.get("from");
   const to=url.searchParams.get("to");
+  const trackingLinkId=url.searchParams.get("tracking_link_id");
   if(!from||!to||!Number.isFinite(Date.parse(from))||!Number.isFinite(Date.parse(to))||Date.parse(from)>=Date.parse(to)){
    return NextResponse.json({error:"A valid date range is required."},{status:400});
   }
   const supabase=getSupabase();
+  let allowedClickIds:Set<string>|null=null;
+  if(trackingLinkId){
+   const {data:link,error:linkError}=await supabase.from("tracking_links").select("id,form_id,sub_aff_id").eq("id",trackingLinkId).single();
+   if(linkError||!link)return NextResponse.json({error:"Tracking link not found."},{status:404});
+   const {data:clickRows,error:clickError}=await supabase.from("clicks").select("click_id").eq("form_id",link.form_id).contains("attribution",{sub_aff_id:link.sub_aff_id});
+   if(clickError)throw clickError;
+   allowedClickIds=new Set((clickRows||[]).map(row=>String(row.click_id)));
+  }
   const pageSize=1000;
   let offset=0;
   const leads:unknown[]=[];
@@ -22,7 +31,7 @@ export async function GET(request:Request){
     .range(offset,offset+pageSize-1);
    if(error)throw error;
    const batch=data||[];
-   leads.push(...batch);
+   leads.push(...(allowedClickIds?batch.filter((row:any)=>allowedClickIds!.has(String(row.attribution?.click_id||""))):batch));
    if(batch.length<pageSize)break;
    offset+=pageSize;
   }
