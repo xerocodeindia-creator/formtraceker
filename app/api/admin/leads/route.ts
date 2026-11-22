@@ -16,9 +16,16 @@ export async function GET(request:Request){
   if(trackingLinkId){
    const {data:link,error:linkError}=await supabase.from("tracking_links").select("id,form_id,sub_aff_id").eq("id",trackingLinkId).single();
    if(linkError||!link)return NextResponse.json({error:"Tracking link not found."},{status:404});
-   const {data:clickRows,error:clickError}=await supabase.from("clicks").select("click_id").eq("form_id",link.form_id).contains("attribution",{sub_aff_id:link.sub_aff_id});
-   if(clickError)throw clickError;
-   allowedClickIds=new Set((clickRows||[]).map(row=>String(row.click_id)));
+   allowedClickIds=new Set<string>();
+   let clickOffset=0;
+   while(true){
+    const {data:clickRows,error:clickError}=await supabase.from("clicks").select("click_id").eq("form_id",link.form_id).contains("attribution",{sub_aff_id:link.sub_aff_id}).range(clickOffset,clickOffset+999);
+    if(clickError)throw clickError;
+    const clickBatch=clickRows||[];
+    for(const row of clickBatch)allowedClickIds.add(String(row.click_id));
+    if(clickBatch.length<1000)break;
+    clickOffset+=1000;
+   }
   }
   const pageSize=1000;
   let offset=0;
