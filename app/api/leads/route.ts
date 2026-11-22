@@ -29,13 +29,16 @@ export async function POST(request:Request){
 
   // Preserve the original query-string spelling, including trailing base64 "=" signs.
   const [baseUrl,rawQuery=""]=String(form.target_url).split("?");
-  const keptParams=rawQuery.split("&").filter(Boolean).filter(part=>{
-   const rawKey=part.split("=")[0];
-   let key=rawKey;try{key=decodeURIComponent(rawKey)}catch{}
-   return key!=="subref"&&key!=="subid";
-  });
-  if(affiliateId)keptParams.push("subref="+affiliateId+"_"+perLeadSubId);
-  const redirectUrl=baseUrl+"?"+keptParams.join("&");
+  let redirectUrl=String(form.target_url);
+  if(affiliateId){
+   const keptParams=rawQuery.split("&").filter(Boolean).filter(part=>{
+    const rawKey=part.split("=")[0];
+    let key=rawKey;try{key=decodeURIComponent(rawKey)}catch{}
+    return key!=="subref"&&key!=="subid";
+   });
+   keptParams.push("subref="+affiliateId+"_"+perLeadSubId);
+   redirectUrl=baseUrl+"?"+keptParams.join("&");
+  }
   return NextResponse.json({success:true,lead_id:data.id,redirect_url:redirectUrl});
  }catch(e){
   return NextResponse.json({error:e instanceof Error?e.message:"Unable to submit lead."},{status:500});
