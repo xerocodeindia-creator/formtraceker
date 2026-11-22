@@ -19,9 +19,8 @@ export async function POST(request:Request){
 
   // Keep the campaign affiliate ID unchanged; generate only a unique sub-affiliate ID per lead.
   const affiliateId=String(attribution["aff_id"]||"").trim();
-  if(!affiliateId)return NextResponse.json({error:"Affiliate ID is missing. Please open the form using its tracking link."},{status:400});
   const perLeadSubId=randomBytes(6).toString("base64url").slice(0,8);
-  attribution["sub_aff_id"]=perLeadSubId;
+  if(affiliateId)attribution["sub_aff_id"]=perLeadSubId;
 
   const {data,error}=await getSupabase().from("leads").insert({
    form_id:form.id,name,phone,fields:values,attribution,status:"pending"
@@ -35,7 +34,7 @@ export async function POST(request:Request){
    let key=rawKey;try{key=decodeURIComponent(rawKey)}catch{}
    return key!=="subref"&&key!=="subid";
   });
-  keptParams.push("subref="+affiliateId+"_"+perLeadSubId);
+  if(affiliateId)keptParams.push("subref="+affiliateId+"_"+perLeadSubId);
   const redirectUrl=baseUrl+"?"+keptParams.join("&");
   return NextResponse.json({success:true,lead_id:data.id,redirect_url:redirectUrl});
  }catch(e){
