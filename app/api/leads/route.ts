@@ -7,9 +7,9 @@ export async function POST(request:Request){
   const b=await request.json();
   const slug=String(b.slug||"");
   const values=b.fields&&typeof b.fields==="object"?b.fields:{};
-  const {data:form,error:formError}=await getSupabase().from("forms").select("id,target_url").eq("slug",slug).eq("active",true).single();
+  const {data:form,error:formError}=await getSupabase().from("forms").select("id,target_url,fields").eq("slug",slug).eq("active",true).single();
   if(formError||!form)return NextResponse.json({error:"This form is unavailable."},{status:404});
-  const name=String(values.name||"").trim(),phone=String(values.phone||"").trim();
+  const configured=Array.isArray((form as any).fields)?(form as any).fields:[];const cleanValues:Record<string,string>={};for(const field of configured){const key=String(field.name),value=String(values[key]??"").trim();if(field.required&&!value)return NextResponse.json({error:field.label+" is required."},{status:400});if(value&&field.type==="email"&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value))return NextResponse.json({error:"Enter a valid "+field.label+"."},{status:400});if(value)cleanValues[key]=value}const name=String(values.name||"").trim(),phone=String(values.phone||"").trim();
   if(!name||!phone)return NextResponse.json({error:"Name and mobile number are required."},{status:400});
   if(!/^[6-9][0-9]{9}$/.test(phone))return NextResponse.json({error:"Enter a valid 10-digit Indian mobile number."},{status:400});
 
@@ -23,7 +23,7 @@ export async function POST(request:Request){
   if(affiliateId)attribution["sub_aff_id"]=perLeadSubId;
 
   const {data,error}=await getSupabase().from("leads").insert({
-   form_id:form.id,name,phone,fields:values,attribution,status:"pending"
+   form_id:form.id,name,phone,fields:cleanValues,attribution,status:"pending"
   }).select("id").single();
   if(error)throw error;
 
