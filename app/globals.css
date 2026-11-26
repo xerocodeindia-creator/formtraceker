@@ -650,3 +650,16 @@ body:before{
 .tablewrap td:nth-child(3),.tablewrap th:nth-child(3){min-width:150px}
 .tablewrap td:nth-child(6),.tablewrap th:nth-child(6){min-width:230px}
 @media(max-width:600px){.tablewrap{margin-right:0!important}.tablewrap table{width:1100px!important;min-width:1100px!important}}
+
+
+.customfieldbuilder{padding:16px;border:1px solid rgba(145,145,165,.22);border-radius:14px;background:rgba(8,8,14,.55)}
+.customfieldheading{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}
+.customfieldheading strong{font-size:14px;color:#f2efff}
+.customfieldrow{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) auto auto;align-items:end;gap:10px;padding:12px 0;border-top:1px solid rgba(145,145,165,.14)}
+.customfieldrow .full{grid-column:1/-1}
+.customfieldrow select,.customfieldrow input:not([type=checkbox]),.publiccard .field select,.publiccard .field textarea{width:100%;min-height:44px;padding:10px 12px;border-radius:11px;background:#0b0910;border:1px solid rgba(145,145,165,.24);color:#f5f4fb;font:inherit}
+.customfieldrequired{display:flex;align-items:center;gap:7px;color:#b5b3c2;font-size:12px;white-space:nowrap;padding:12px 0}
+.customfieldrequired input{accent-color:#9b78ff}
+.publiccard .field textarea{min-height:100px;resize:vertical}
+.publiccard .field select:focus,.publiccard .field textarea:focus{outline:none;border-color:#9272ff;box-shadow:0 0 0 3px rgba(139,99,255,.14)}
+@media(max-width:600px){.customfieldrow{grid-template-columns:1fr 1fr}.customfieldrow .customfieldrequired{grid-column:1}.customfieldrow>.btn{grid-column:2;justify-self:end}.customfieldheading{align-items:flex-start}.customfieldbuilder{padding:12px}}
