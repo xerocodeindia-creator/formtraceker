@@ -32,7 +32,7 @@ export async function GET(request:Request){
   const leads:unknown[]=[];
   while(true){
    const {data,error}=await supabase.from("leads")
-    .select("id,name,phone,attribution,status,created_at,forms(name,slug)")
+    .select("id,name,phone,fields,attribution,status,created_at,forms(name,slug,fields)")
     .gte("created_at",from).lt("created_at",to)
     .order("created_at",{ascending:false})
     .range(offset,offset+pageSize-1);
