@@ -663,3 +663,11 @@ body:before{
 .publiccard .field textarea{min-height:100px;resize:vertical}
 .publiccard .field select:focus,.publiccard .field textarea:focus{outline:none;border-color:#9272ff;box-shadow:0 0 0 3px rgba(139,99,255,.14)}
 @media(max-width:600px){.customfieldrow{grid-template-columns:1fr 1fr}.customfieldrow .customfieldrequired{grid-column:1}.customfieldrow>.btn{grid-column:2;justify-self:end}.customfieldheading{align-items:flex-start}.customfieldbuilder{padding:12px}}
+.tabbar{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 6px;position:sticky;top:0;z-index:20;padding:8px 0;background:inherit}
+.tabbtn{border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.04);color:inherit;padding:10px 16px;border-radius:999px;font-weight:600;cursor:pointer;font-size:14px}
+.tabbtn:hover{background:rgba(255,255,255,.09)}
+.tabbtn.active{background:#7c3aed;border-color:#7c3aed;color:#fff}
+.helpbox{border:1px dashed rgba(124,58,237,.6);background:rgba(124,58,237,.08);border-radius:12px;padding:14px 16px;margin:6px 0 18px;line-height:1.6}
+.helpbox ol{margin:6px 0 0 18px;padding:0}
+.dangerbox{border:1px solid rgba(239,68,68,.5);background:rgba(239,68,68,.07);border-radius:12px;padding:16px}
+@media (max-width:640px){.tabbtn{flex:1 1 45%;padding:10px 8px;font-size:13px}}
