@@ -32,7 +32,10 @@ export async function POST(request:Request){
   // Preserve the original query-string spelling, including trailing base64 "=" signs.
   const [baseUrl,rawQuery=""]=String(form.target_url).split("?");
   let redirectUrl=String(form.target_url);
-  if(affiliateId){
+  // If the company destination URL already carries a fixed subref value (e.g. subref=8112, no {placeholder}),
+  // keep the URL exactly as given and do not replace subref.
+  const fixedSubref=rawQuery.split("&").some(part=>{const [k,...v]=part.split("=");let key=k;try{key=decodeURIComponent(k)}catch{};const val=v.join("=");return key==="subref"&&val!==""&&!/[{}]|%7B|%7D/i.test(val)});
+  if(affiliateId&&!fixedSubref){
    const keptParams=rawQuery.split("&").filter(Boolean).filter(part=>{
     const rawKey=part.split("=")[0];
     let key=rawKey;try{key=decodeURIComponent(rawKey)}catch{}
