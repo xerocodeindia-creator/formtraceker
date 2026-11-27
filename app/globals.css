@@ -671,3 +671,7 @@ body:before{
 .helpbox ol{margin:6px 0 0 18px;padding:0}
 .dangerbox{border:1px solid rgba(239,68,68,.5);background:rgba(239,68,68,.07);border-radius:12px;padding:16px}
 @media (max-width:640px){.tabbtn{flex:1 1 45%;padding:10px 8px;font-size:13px}}
+.btn.danger{border-color:rgba(239,68,68,.55);color:#f87171}
+.btn.danger:hover{background:rgba(239,68,68,.12)}
+.trackinglinkurl{grid-template-columns:minmax(0,1fr) auto auto!important}
+@media(max-width:640px){.trackinglinkurl{grid-template-columns:1fr 1fr!important}.trackinglinkurl code{grid-column:1/-1}}

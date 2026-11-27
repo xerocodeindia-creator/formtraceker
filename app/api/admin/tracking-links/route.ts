@@ -25,3 +25,17 @@ export async function POST(request:Request){
   throw new Error("Could not create a unique short link. Try again.");
  }catch(e){return NextResponse.json({error:e instanceof Error?e.message:"Could not create short link."},{status:500})}
 }
+export async function DELETE(request:Request){
+ if(!requireAdmin(request))return NextResponse.json({error:"Please sign in."},{status:401});
+ try{
+  const b=await request.json().catch(()=>({}));const id=String(b.id||"").trim();const token=String(b.token||"").trim();
+  if(!id||!token)return NextResponse.json({error:"Link id and name are required."},{status:400});
+  const db=getSupabase();
+  const {data:link,error:findError}=await db.from("tracking_links").select("id,token").eq("id",id).single();
+  if(findError||!link)return NextResponse.json({error:"Link not found."},{status:404});
+  if(link.token!==token)return NextResponse.json({error:"Link name does not match."},{status:400});
+  const {error}=await db.from("tracking_links").delete().eq("id",id);
+  if(error)throw error;
+  return NextResponse.json({ok:true,deleted:link.token});
+ }catch(e){return NextResponse.json({error:e instanceof Error?e.message:"Could not delete link."},{status:500})}
+}
