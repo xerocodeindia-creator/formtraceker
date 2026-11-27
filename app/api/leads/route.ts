@@ -16,6 +16,8 @@ export async function POST(request:Request){
   const allowed=["aff_id","sub_aff_id","click_id","utm_source","utm_medium","utm_campaign","utm_content","fbclid"];
   const attribution:Record<string,string>={};
   for(const k of allowed)if(b[k])attribution[k]=String(b[k]).slice(0,255);
+  // Telegram user ID passed from the bot link, digits only.
+  const tg=String(b.tg||"").trim();if(/^[0-9]{3,20}$/.test(tg))attribution["tg"]=tg;
 
   // Keep the campaign affiliate ID unchanged; generate only a unique sub-affiliate ID per lead.
   const affiliateId=String(attribution["aff_id"]||"").trim();
